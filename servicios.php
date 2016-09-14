@@ -5,7 +5,7 @@
     </div>
     <div class="service-info">
       <h3>Sustentable</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+      <p>Descripción texto, descripción texto descripción texto descripción texto descripción texto descripción..</p>
     </div>
   </div>
   
@@ -15,7 +15,7 @@
     </div>
     <div class="service-info">
       <h3>De calidad</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+      <p>Descripción texto, descripción texto descripción texto descripción texto descripción texto descripción..</p>
     </div>
   </div>
   
@@ -25,7 +25,7 @@
     </div>
     <div class="service-info">
       <h3>Orgánico</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+      <p>Descripción texto, descripción texto descripción texto descripción texto descripción texto descripción..</p>
     </div>
   </div>
   
@@ -35,7 +35,7 @@
     </div>
     <div class="service-info">
       <h3>Organizado</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+      <p>Descripción texto, descripción texto descripción texto descripción texto descripción texto descripción..</p>
     </div>
   </div>
   

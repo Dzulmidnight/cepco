@@ -2,37 +2,37 @@
       <div class="carousel-inner">
         <div class="item active" style="background-image: url(images/slider/1.jpg)">
           <div class="caption">
-            <h1 class="animated fadeInLeftBig"><span>CEPCO</span></h1>
-            <p class="animated fadeInRightBig">Coordinadora Estatal de Productores de Café de Oaxaca</p>
+            <h1 class="animated fadeInLeftBig"><span>CEPCO</span> - TRABAJA</h1>
+            <p class="animated fadeInRightBig lead">Coordinadora Estatal de Productores de Café de Oaxaca</p>
             <a data-scroll class="btn btn-start animated fadeInUpBig" href="#about-us">Saber Más</a>
           </div>
         </div>
         <div class="item" style="background-image: url(images/slider/2.jpg)">
           <div class="caption">
-            <h1 class="animated fadeInLeftBig"><span>CEPCO</span></h1>
-            <p class="animated fadeInRightBig">Bootstrap - Responsive Design - Retina Ready - Parallax</p>
-            <a data-scroll class="btn btn-start animated fadeInUpBig" href="#about-us">Start now</a>
+            <h1 class="animated fadeInLeftBig"><span>CEPCO</span> - INCLUYE</h1>
+            <p class="animated fadeInRightBig lead">Coordinadora Estatal de Productores de Café de Oaxaca</p>
+            <a data-scroll class="btn btn-start animated fadeInUpBig" href="#about-us">Saber Más</a>
           </div>
         </div>
         <div class="item" style="background-image: url(images/slider/3.jpg)">
           <div class="caption">
-            <h1 class="animated fadeInLeftBig">We are <span>CEPCO</span></h1>
-            <p class="animated fadeInRightBig">Bootstrap - Responsive Design - Retina Ready - Parallax</p>
-            <a data-scroll class="btn btn-start animated fadeInUpBig" href="#about-us">Start now</a>
+            <h1 class="animated fadeInLeftBig"><span>CEPCO</span> - CREE</h1>
+            <p class="animated fadeInRightBig lead">Coordinadora Estatal de Productores de Café de Oaxaca</p>
+            <a data-scroll class="btn btn-start animated fadeInUpBig" href="#about-us">Saber Más</a>
           </div>
         </div>
         <div class="item" style="background-image: url(images/slider/4.jpg)">
           <div class="caption">
-            <h1 class="animated fadeInLeftBig">We are <span>Coffee Producers</span></h1>
-            <p class="animated fadeInRightBig">Bootstrap - Responsive Design - Retina Ready - Parallax</p>
-            <a data-scroll class="btn btn-start animated fadeInUpBig" href="#about-us">Start now</a>
+            <h1 class="animated fadeInLeftBig"><span>CEPCO</span> - PRODUCE</h1>
+            <p class="animated fadeInRightBig lead">Coordinadora Estatal de Productores de Café de Oaxaca</p>
+            <a data-scroll class="btn btn-start animated fadeInUpBig" href="#about-us">Saber Más</a>
           </div>
         </div>
         <div class="item" style="background-image: url(images/slider/5.jpg)">
           <div class="caption">
-            <h1 class="animated fadeInLeftBig">We are <span>Creative</span></h1>
-            <p class="animated fadeInRightBig">Bootstrap - Responsive Design - Retina Ready - Parallax</p>
-            <a data-scroll class="btn btn-start animated fadeInUpBig" href="#about-us">Start now</a>
+            <h1 class="animated fadeInLeftBig"><span>CEPCO</span> - CONSERVA</h1>
+            <p class="animated fadeInRightBig lead">Coordinadora Estatal de Productores de Café de Oaxaca</p>
+            <a data-scroll class="btn btn-start animated fadeInUpBig" href="#about-us">Saber Más</a>
           </div>
         </div>
 
