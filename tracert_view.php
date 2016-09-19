@@ -69,10 +69,22 @@
 				$cont++;
 				
 				if($cont<$limite){
-					
-				$query = "SELECT * FROM productor where idproductor='".$row_fotografia['idproductor']."' order by RAND()";
+				
+				$loc="";
+				$org="";
+				
+				if(isset($_POST['idlocalidad'])){
+					$loc="and idlocalidad='".$_POST['idlocalidad']."'";
+				}
+				if(isset($_POST['idorganizacion'])){
+					$loc="and idorganizacion='".$_POST['idorganizacion']."'";
+				}
+				
+				$query = "SELECT * FROM productor where idproductor='".$row_fotografia['idproductor']."' ".$loc." ".$org;
 				$productor = mysql_query($query, $cepco) or die(mysql_error());
-				$row_productor = mysql_fetch_assoc($productor);
+				//$row_productor = mysql_fetch_assoc($productor);
+				while($row_productor = mysql_fetch_assoc($productor)){
+				
 				
 				$query = "SELECT * FROM localidad where idlocalidad='".$row_productor['idlocalidad']."'";
 				$localidaddet = mysql_query($query, $cepco) or die(mysql_error());
@@ -98,7 +110,7 @@
             </div>
           </div>
           
-          <?php }}}?>
+          <?php }}}}?>
           
           <div class="col-sm-3">
             <div class="team-member wow flipInY" data-wow-duration="1000ms" data-wow-delay="800ms">
@@ -108,7 +120,7 @@
               <div class="member-info">
                 <h3>tra.cert</h3>
                 <h4>inforganic Technologies</h4>
-                <p align="justify">Sistema de información para la trazabilidad de producto.<br />Información recopilada en campo por tecnicos comunitarios capacitados en tecnologías de última generación, datos e imagenes disponibles al consumidor y público interesado vía internet.</p>
+                <p align="justify">Sistema digital de trazabilidad de producto.<br />Información recopilada en campo por tecnicos comunitarios capacitados en tecnologías de última generación, datos e imagenes disponibles al consumidor y público interesado vía internet.</p>
               </div>
               <div class="social-icons">
                 <ul>

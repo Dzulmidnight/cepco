@@ -1,4 +1,4 @@
-<?php require_once('Connections/cepco.php'); ?>
+<?php require_once('../Connections/cepco.php'); ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -34,27 +34,20 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 mysql_select_db($database_cepco, $cepco);
 
 
-$query_fotografia = "SELECT * FROM fotografia where descripcion='disponible' ";
+$query_fotografia = "SELECT * FROM fotografia";
 $fotografia = mysql_query($query_fotografia, $cepco) or die(mysql_error());
 //$row_fotografia = mysql_fetch_assoc($fotografia);
 $totalRows_fotografia = mysql_num_rows($fotografia);
 
+while($row_fotografia = mysql_fetch_assoc($fotografia)){
 
+	if(file_exists("foto/".$row_fotografia['url'])){
+		
+		$query="update fotografia set descripcion='disponible' where idfotografia='".$row_fotografia['idfotografia']."'";
+		$ejecutar = mysql_query($query, $cepco) or die(mysql_error());
+		echo "<br>".$query."<br>";
+	}
 
-$query = "SELECT * FROM organizacion";
-$organizacion = mysql_query($query, $cepco) or die(mysql_error());
-//$row_organizacion = mysql_fetch_assoc($organizacion);
-
-
-if(isset($_POST['idorganizacion'])){
-$query = "SELECT * FROM localidad where idlocalidad in(select idlocalidad from inspeccion_detalle where idorganizacion='".$_POST['idorganizacion']."')";
-$localidad = mysql_query($query, $cepco) or die(mysql_error());
-//$row_localidad = mysql_fetch_assoc($localidad);
-}else{
-$query = "SELECT * FROM localidad";
-$localidad = mysql_query($query, $cepco) or die(mysql_error());
-//$row_localidad = mysql_fetch_assoc($localidad);
 }
-
 
 ?>
