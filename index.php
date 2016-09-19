@@ -1,3 +1,4 @@
+<?php include("tracert/brain.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +50,7 @@
             <li class="scroll active"><a href="#home">Inicio</a></li>
             <li class="scroll"><a href="#about-us">Historia</a></li>                     
             <li class="scroll"><a href="#portfolio">En movimiento</a></li>
-            <li class="scroll"><a href="#team">Organico y Ambiental</a></li>
+            <li class="scroll"><a href="#organic">Organico y Ambiental</a></li>
             <li class="scroll"><a href="#team">Trazabilidad!</a></li>
             <li class="scroll"><a href="#blog">Artículos</a></li>
             <!--<li class="scroll"><a href="#">Vvienda</a></li>-->
@@ -89,6 +90,8 @@
 <?php include("datos.php")?>
   
 <?php include("empresa.php")?>
+
+<?php include("tracert_view.php")?>
 
 
 
