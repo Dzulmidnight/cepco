@@ -84,7 +84,7 @@
 				
 				?>
         
-          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 ">
             <div class="team-member wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
               <div class="member-image">
                 <img class="img-responsive" src="tracert/foto/<?php echo $row_fotografia['url'];?>" alt="">
