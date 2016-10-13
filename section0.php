@@ -18,6 +18,9 @@
 <a href="docs/concept_note.pdf" target="_blank">
 <img src="images/slider/convocatoria3.jpg" width="50%">
 </a>
+<a href="docs/anexo_listado_preguntas.pdf" target="_blank">
+<img src="images/slider/convocatoria4.jpg" width="50%">
+</a>
 </div>
 
 <div align="center" class="hidden-md hidden-lg">
@@ -27,6 +30,9 @@
 </a>
 <a href="docs/concept_note.pdf" target="_blank">
 <img src="images/slider/convocatoria3.jpg" width="100%">
+</a>
+<a href="docs/anexo_listado_preguntas.pdf" target="_blank">
+<img src="images/slider/convocatoria4.jpg" width="50%">
 </a>
 </div>
           
@@ -46,6 +52,9 @@
 </a>
 <a href="docs/concept_note.pdf" target="_blank">
 <img src="images/slider/convocatoria3.jpg" width="50%">
+</a>
+<a href="docs/anexo_listado_preguntas.pdf" target="_blank">
+<img src="images/slider/convocatoria4.jpg" width="50%">
 </a>
 </center>
           
@@ -68,6 +77,9 @@
 <a href="docs/concept_note.pdf" target="_blank">
 <img src="images/slider/convocatoria3.jpg" width="50%">
 </a>
+<a href="docs/anexo_listado_preguntas.pdf" target="_blank">
+<img src="images/slider/convocatoria4.jpg" width="50%">
+</a>
 </center>
           
             <h1 class="animated fadeInLeftBig"><span>CEPCO</span> - CREE</h1>
@@ -86,6 +98,9 @@
 <a href="docs/concept_note.pdf" target="_blank">
 <img src="images/slider/convocatoria3.jpg" width="50%">
 </a>
+<a href="docs/anexo_listado_preguntas.pdf" target="_blank">
+<img src="images/slider/convocatoria4.jpg" width="50%">
+</a>
 </center>
           
             <h1 class="animated fadeInLeftBig"><span>CEPCO</span> - PRODUCE</h1>
@@ -103,6 +118,9 @@
 </a>
 <a href="docs/concept_note.pdf" target="_blank">
 <img src="images/slider/convocatoria3.jpg" width="50%">
+</a>
+<a href="docs/anexo_listado_preguntas.pdf" target="_blank">
+<img src="images/slider/convocatoria4.jpg" width="50%">
 </a>
 </center>
           
