@@ -38,7 +38,7 @@ $query_fotografia = "SELECT * FROM fotografia";
 $fotografia = mysql_query($query_fotografia, $cepco) or die(mysql_error());
 //$row_fotografia = mysql_fetch_assoc($fotografia);
 $totalRows_fotografia = mysql_num_rows($fotografia);
-
+echo "before while, tot: ".$totalRows_fotografia;
 while($row_fotografia = mysql_fetch_assoc($fotografia)){
 
 	if(file_exists("foto/".$row_fotografia['url'])){

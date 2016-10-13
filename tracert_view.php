@@ -3,7 +3,7 @@
       <div class="row">
         <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
           <h2>Where did Coffee comes?</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
+          <p>A continuación te mostramos fotografías capturadas en campo durante el proceso de inspección interna que realizamos cada año para la verificación del cumplimiento de las normas orgánicas con las que cumplen los pequeños productores de café que conforman la CEPCO.</p>
         </div>
       </div>
       
@@ -14,7 +14,7 @@
 
 <form method="post" action="#team" class="form">
 <label for="idorganizacion">Selecciona una Organización:</label>
-<select onchange="this.form.submit()" class="form-control" name="idorganizacion">
+<select disabled="disabled" onchange="this.form.submit()" class="form-control" name="idorganizacion">
 <?php while($row_organizacion = mysql_fetch_assoc($organizacion)
 ){?>
 <option <?php if(isset($_POST['idorganizacion'])){if($_POST['idorganizacion']==$row_organizacion['idorganizacion']){?> selected="selected" <?php }}?> value="<?php echo $row_organizacion['idorganizacion'];?>"><?php echo $row_organizacion['organizacion'];?></option>
@@ -23,7 +23,7 @@
 </form>
 <form method="post" action="#team" class="form">
 <label for="idlocalidad"><?php if(isset($_POST['idorganizacion'])){?>Comunidades relacionadas a la organización:<?php }else{?>Selecciona una Comunidad:<?php }?></label>
-<select onchange="this.form.submit()" class="form-control" name="idlocalidad">
+<select disabled="disabled" onchange="this.form.submit()" class="form-control" name="idlocalidad">
 <?php while($row_localidad = mysql_fetch_assoc($localidad)
 ){?>
 <option <?php if(isset($_POST['idlocalidad'])){if($_POST['idlocalidad']==$row_localidad['idlocalidad']){?> selected="selected" <?php }}?> value="<?php echo $row_localidad['idlocalidad']?>"><?php echo $row_localidad['localidad'];?></option>
@@ -33,12 +33,10 @@
 <input type="hidden" name="idorganizacion" value="<?php echo $_POST['idorganizacion'];?>" />
 <?php }?>
 </form>
-
-<hr/>
 <form method="post" action="#team" class="form">
 <label for="productor">Productor (Nombre o Clave):</label>
 
-<input type="text" name="productor" placeholder="Escribe aquí" />
+<input name="productor" type="text" placeholder="Escribe aquí" readonly="readonly" />
 
 <?php if(isset($_POST['idorganizacion'])){?>
 <input type="hidden" name="idorganizacion" value="<?php echo $_POST['idorganizacion'];?>" />
@@ -59,7 +57,7 @@
         
         <?php
         
-				$limite=16;
+				$limite=7;
 				$cont=0;
 				
 				while($row_fotografia = mysql_fetch_assoc($fotografia)){
@@ -80,7 +78,7 @@
 					$loc="and idorganizacion='".$_POST['idorganizacion']."'";
 				}
 				
-				$query = "SELECT * FROM productor where idproductor='".$row_fotografia['idproductor']."' ".$loc." ".$org;
+				$query = "SELECT * FROM productor where idproductor='".$row_fotografia['idproductor']."' ".$loc." ".$org." limit 1";
 				$productor = mysql_query($query, $cepco) or die(mysql_error());
 				//$row_productor = mysql_fetch_assoc($productor);
 				while($row_productor = mysql_fetch_assoc($productor)){
@@ -102,9 +100,9 @@
                 <img class="img-responsive" src="tracert/foto/<?php echo $row_fotografia['url'];?>" alt="">
               </div>
               <div class="member-info">
-                <h3><?php echo substr($row_productor['productor'],0,15);?></h3>
+                <h4><?php echo substr($row_productor['productor'],0,15);?></h4>
                 <h4>Productor ORGÁNICO</h4>
-                <p><?php echo $row_localidaddet['localidad'].",".$row_organizaciondet['organizacion'];?></p>
+                <small><?php echo $row_localidaddet['localidad']."<br>".$row_organizaciondet['organizacion'];?></small>
               </div>
              
             </div>
@@ -122,6 +120,8 @@
                 <h4>inforganic Technologies</h4>
                 <p align="justify">Sistema digital de trazabilidad de producto.<br />Información recopilada en campo por tecnicos comunitarios capacitados en tecnologías de última generación, datos e imagenes disponibles al consumidor y público interesado vía internet.</p>
               </div>
+              
+              <?php /*
               <div class="social-icons">
                 <ul>
                   <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
@@ -131,6 +131,8 @@
                   <li><a class="rss" href="#"><i class="fa fa-rss"></i></a></li>
                 </ul>
               </div>
+              */ ?>
+              
             </div>
           </div>
           

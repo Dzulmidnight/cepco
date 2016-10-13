@@ -34,14 +34,14 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 mysql_select_db($database_cepco, $cepco);
 
 
-$query_fotografia = "SELECT * FROM fotografia where descripcion='disponible' ";
+$query_fotografia = "SELECT * FROM fotografia where descripcion='disponible' order by RAND() limit 8";
 $fotografia = mysql_query($query_fotografia, $cepco) or die(mysql_error());
 //$row_fotografia = mysql_fetch_assoc($fotografia);
 $totalRows_fotografia = mysql_num_rows($fotografia);
 
 
 
-$query = "SELECT * FROM organizacion";
+$query = "SELECT * FROM organizacion limit 1";
 $organizacion = mysql_query($query, $cepco) or die(mysql_error());
 //$row_organizacion = mysql_fetch_assoc($organizacion);
 
@@ -51,7 +51,7 @@ $query = "SELECT * FROM localidad where idlocalidad in(select idlocalidad from i
 $localidad = mysql_query($query, $cepco) or die(mysql_error());
 //$row_localidad = mysql_fetch_assoc($localidad);
 }else{
-$query = "SELECT * FROM localidad";
+$query = "SELECT * FROM localidad limit 1";
 $localidad = mysql_query($query, $cepco) or die(mysql_error());
 //$row_localidad = mysql_fetch_assoc($localidad);
 }
