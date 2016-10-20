@@ -55,7 +55,7 @@
             <li class="scroll"><a href="#portfolio">En movimiento</a></li>
             <li class="scroll"><a href="#organic">Organico y Ambiental</a></li>
             <li class="scroll"><a href="#team">Trazabilidad!</a></li>
-            <li class="scroll"><a href="#blog">Artículos</a></li>
+            <li class="scroll"><a href="#proyectos">Proyectos</a></li>
             <!--<li class="scroll"><a href="#">Vvienda</a></li>-->
             <li class="scroll"><a href="#contact">Contact</a></li>       
           </ul>
@@ -87,6 +87,8 @@
   
   
 <?php //include("servicios.php")?>
+
+<?php include("proyectos.php")?>
 
 <?php include("historia.php")?>
   
