@@ -1,0 +1,15 @@
+.bordes{
+	border-top: 1px #e5e5e5 solid; 
+	border-bottom: 1px #e5e5e5 solid;
+}
+.bordes > a{
+	font-size: 13px;
+	font-weight: bold; 
+	color: #7f8c8d;
+}
+.bordes > a:hover{
+	color: #2c3e50;
+}
+.fuente{
+	font-size: 12px;
+}

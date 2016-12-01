@@ -35,7 +35,7 @@
         <div class="col-lg-6">
         
         
-        <?php include("proyectos2.php")?>
+        <?php include("proyectos2.php"); ?>
         
         
         

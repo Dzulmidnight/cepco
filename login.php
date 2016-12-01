@@ -20,7 +20,6 @@
     <script src="js/respond.min.js"></script>
   <![endif]-->
   
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
   <link rel="shortcut icon" href="images/cepco.ico">
 </head><!--/head-->
 
@@ -32,9 +31,6 @@
 
   <header id="home">
   
-  
-  
-    <?php include("section0.php");?>
     <div class="main-nav">
       <div class="container">
         <div class="navbar-header">
@@ -50,15 +46,15 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">                 
-            <li class="scroll active"><a href="#home">Inicio</a></li>
-            <li class="scroll"><a href="#about-us">Historia</a></li>                     
-            <li class="scroll"><a href="#portfolio">En movimiento</a></li>
-            <li class="scroll"><a href="#organic">Organico y Ambiental</a></li>
-            <li class="scroll"><a href="#team">Trazabilidad!</a></li>
-            <li class="scroll"><a href="#proyectos">Proyectos</a></li>
-            <!--<li class="scroll"><a href="#">Vvienda</a></li>-->
-            <li class="scroll"><a href="#contact">Contact</a></li> 
-            <li class="scroll"><a href="login.php">Mi Cuenta</a></li>       
+            <li class="scroll"><a href="index.php">Inicio</a></li>
+            <li class="scroll"><a href="index.php#about-us">Historia</a></li>                     
+            <li class="scroll"><a href="index.php#portfolio">En movimiento</a></li>
+            <li class="scroll"><a href="index.php#organic">Organico y Ambiental</a></li>
+            <li class="scroll"><a href="index.php#team">Trazabilidad!</a></li>
+            <li class="scroll"><a href="index.php#proyectos">Proyectos</a></li>
+            <!--<li class="scroll"><a href="index.php#">Vvienda</a></li>-->
+            <li class="scroll"><a href="index.php#contact">Contact</a></li> 
+            <li class="scroll active"><a href="login.php">Mi Cuenta</a></li>       
           </ul>
         </div>
 
@@ -87,57 +83,55 @@
   </header><!--/#home-->
   
   
-<?php //include("servicios.php")?>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-4">
+            <!---- INCIAR FORMULARIO PARA INCIAR SESIÓN ---->
+            <form action="Connections/autentificar.php" method="POST">
+              <div class="panel panel-success">
+                <div class="panel-heading">
+                  <h3 class="panel-title text-center">Mi Cuenta</h3>
+                </div>
 
-<?php include("proyectos.php"); ?>
+                  <?php
+                  if(isset($_GET['error']) && $_GET['error'] == "si"){
+                  ?>
+                    <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <strong>Datos Incorrectos</strong>
+                    </div>
+                  <?php
+                  }
+                  ?>
 
-<?php include("historia.php"); ?>
-  
-<?php include("datos.php"); ?>
-  
-<?php include("empresa.php"); ?>
+                <div class="panel-body">
+                  <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-user" id="usuario" aria-hidden="true"></span>
+                    <input type="text" class="form-control" style="border-color:#bdc3c7" name="username" placeholder="Usuario" aria-describedby="usuario">
+                  </div>
+                  <hr>
+                  <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-lock" id="password"></span>
+                    <input type="text" class="form-control" style="border-color:#bdc3c7" name="password" placeholder="Password" aria-describedby="password">
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  <button class="btn btn-success" style="width:100%;"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Iniciar Sesión</button>
+                </div>
 
-<?php include("tracert_view.php"); ?>
+              </div>
+            </form>
+            <!---- TERMINA FORMULARIO PARA INCIAR SESIÓN ---->
 
-
-
-  
-  <footer id="footer">
-    <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-      <div class="container text-center">
-        <div class="footer-logo">
-          <!--<a href="index.html"><img class="img-responsive" src="images/logo.png" alt=""></a>-->
-          <a href="">CEPCO</a>
-        </div>
-        <div class="social-icons">
-          <ul>
-            <li><a class="envelope" href="#"><i class="fa fa-envelope"></i></a></li>
-            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li> 
-            <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-            <li><a class="tumblr" href="#"><i class="fa fa-tumblr-square"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6">
-            <p>&copy; CEPCO 2016.</p>
-          </div>
-          <div class="col-sm-6">
-            <p class="pull-right">Design by <a href="http://inforganic.net/">Inforganic</a></p>
-          </div>
         </div>
       </div>
     </div>
-  </footer>
+  </section>
+
 
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
   <script type="text/javascript" src="js/jquery.inview.min.js"></script>
   <script type="text/javascript" src="js/wow.min.js"></script>
   <script type="text/javascript" src="js/mousescroll.js"></script>
