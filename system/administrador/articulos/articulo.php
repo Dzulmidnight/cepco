@@ -42,6 +42,10 @@
 			include("add_articulo.php");
 		}else if(isset($_GET['add_segmento'])){
 			include("add_segmento.php");
+		}else if(isset($_GET['galeria'])){
+			include("galeria.php");
+		}else if(isset($_GET['archivos'])){
+			include("archivos.php");
 		}else{
 			include("listado_articulo.php");
 		}
