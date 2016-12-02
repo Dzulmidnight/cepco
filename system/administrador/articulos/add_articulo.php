@@ -203,7 +203,7 @@ if (!function_exists("GetSQLValueString")) {
 
 	?>
 
-		<div class="col-lg-8" style="padding:0px;">
+		<div class="col-lg-12" style="padding:0px;">
 			<form action="" method="POST" enctype="multipart/form-data">
 				<div class="panel panel-warning">
 				  <div class="panel-heading">
@@ -274,7 +274,7 @@ if (!function_exists("GetSQLValueString")) {
 	<?php
 	}else{
 	?>
-		<div class="col-lg-8">
+		<div class="col-lg-12">
 			<form action="" method="POST" enctype="multipart/form-data">
 				<div class="panel panel-default">
 				  <div class="panel-heading">
@@ -282,7 +282,7 @@ if (!function_exists("GetSQLValueString")) {
 				  </div>
 				  <div class="panel-body fuente" style="padding:0px;margin:0px;">
 
-				  	<div class="col-lg-12">
+				  	<div class="col-lg-12" style="padding:0px;">
 						<div class="col-md-6">
 							<p class="alert alert-info" style="padding:7px;">Publicado Por: <strong style="color:#c0392b"><?php echo $_SESSION['username']; ?></strong></p>
 							<input type="hidden" name="idusuario" value="<?php echo $_SESSION['idusuario']; ?>">
@@ -291,19 +291,40 @@ if (!function_exists("GetSQLValueString")) {
 							<p class="alert alert-info" style="padding:7px;">Fecha: <strong style="color:#c0392b"><?php echo date('d/m/Y', time()); ?></strong></p>
 						</div>	
 
-						<div class="col-md-12">
+						<div class="form-group col-md-12">
 							<label for="titulo">Titulo Articulo</label>
-							<input type="text" class="form-control" name="titulo" placeholder="Titulo Articulo" required>
+							<input type="text" class="form-control" name="titulo" id="titulo" placeholder="Titulo Articulo" required>
 						</div>
-						<div class="col-md-6">
+
+						<div class="form-group col-md-12">
+							<label for="img">Imagen de Portada</label>
+							<input type="file" class="form-control" name="img" id="img" required>
+						</div>
+
+						<div class="form-group col-md-12">
+							<label for="descripcion_img">Descripción Imagen</label>
+							<textarea class="form-control" name="descripcion_img" id="descripcion_img" rows="4"></textarea>
+						</div>
+
+						<div class="form-group col-md-12">
+							<label for="contenido">Contenido del Articulo</label>
+							<textarea class="form-control textarea" name="contenido" id=""  rows="10"></textarea>
+						</div>
+
+						<div class="form-group col-md-12">
+							<label for="fuente">Fuente</label>
+							<input type="text" class="form-control" name="fuente" id="fuente" placeholder="Fuente del articulo">
+						</div>
+
+						<div class="form-group col-md-6">
 							<label for="tag_existente">Listado Tags</label>
-							<br>
+
 							<?php 
 							$query = "SELECT * FROM tags";
 							$row_tag = mysql_query($query,$cepco) or die(mysql_error());
 
 							 ?>
-							<select class="form-control chosen-select" data-placeholder="Tags Existentes" name="tag_existente[]" id="" multiple>
+							<select class="form-control chosen-select" data-placeholder="Tags Existentes" name="tag_existente[]" id="tag_existente" multiple>
 								<?php 
 								while($tag = mysql_fetch_assoc($row_tag)){
 								?>
@@ -313,40 +334,24 @@ if (!function_exists("GetSQLValueString")) {
 								?>
 							</select>
 						</div>
-						<div class="col-md-6">
-							<br>
+
+						<div class="form-group col-md-6">
 							<table class="table table-striped table-condensed table-bordered" style="font-size:12px" id="tabla_tags">
 								<tr>
-									<td class="fuente">Nuevo Tag</td>
-									<td class="fuente" style="border-style:hidden hidden hidden solid;">
+									<td class="fuente">
+										Nuevo Tag
+
 										<button type="button" onclick="tabla_tags()" data-toggle="tooltip" title="Nuevo Tag" class="btn btn-primary" aria-label="Left Align">
 										  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 										</button>
 									</td>
+
 								</tr>
 								<tr class="text-center">
 									<td class="fuente"><input type="text" class="form-control" name="nuevo_tag[0]" id="exampleInputEmail1" placeholder="Agregar Palabra"></td>
 								</tr>
 							</table>
 						</div>
-
-						<div class="col-md-6">
-							<label for="img">Imagen</label>
-							<input type="file" class="form-control" name="img" required>
-						</div>
-						<div class="col-md-6">
-							<label for="descripcion_img">Descripción Imagen</label>
-							<textarea class="form-control" name="descripcion_img" id="descripcion_img" rows="4"></textarea>
-						</div>
-						<div class="col-md-12">
-							<label for="contenido">Contenido Articulo</label>
-							<textarea class="form-control textarea" name="contenido" id=""  rows="10" required></textarea>
-						</div>
-						<div class="col-md-12">
-							<label for="contenido">Fuente</label>
-							<input type="text" class="form-control" name="fuente" placeholder="fuente">
-						</div>
-
 
 						<div class="col-lg-12">
 							<hr>
@@ -356,113 +361,14 @@ if (!function_exists("GetSQLValueString")) {
 
 				  	</div>
 
-				  	<!--29/08 <div class="col-lg-6">
-						<div class="col-md-6">
-							<label for="tipo_nota">Tipo Nota</label>
-							<select class="form-control" name="tipo_nota" id="tipo_nota">
-								<option value="">...</option>
-								<option value="encabezado">Encabezado</option>
-								<option value="cuerpo">Cuerpo</option>
-							</select>
-						</div>
-						<div class="col-md-6">
-							<label for="fecha">Fecha</label>
-							<input class="form-control" type="date" id="fecha" name="fecha" required>
-						</div>
-						<div class="col-md-6">
-							<label for="contenido_titulo">Titulo Nota (contenido_titulo)</label>
-							<input type="text" class="form-control" id="contenido_titulo" name="contenido_titulo">
-							<!--<textarea class="textarea form-control" id="contenido_titulo" name="contenido_titulo" rows="4" ></textarea>-->
-					<!--29/08	</div>
-						<div class="col-md-6">
-							<label for="descripcion1">Descripción 1</label>
-							<input type="text" class="form-control" id="descripcion1" name="descripcion1">
-							<!--<textarea class="textarea form-control" id="descripcion1" name="descripcion1" rows="4" ></textarea>-->
-					<!--29/08	</div>
-						
-						<div class="col-md-6">
-							<label for="descripcion2"> Descripción 2</label>
-							<input type="text" class="form-control" id="descripcion2" name="descripcion2">
-							<!--<textarea class="textarea form-control" id="descripcion2" name="descripcion2" rows="4" ></textarea>-->
-					<!--29/08	</div>
-
-						<div class="col-md-6">
-							<label for="descripcion3"> Descripción 3</label>
-							<input type="text" class="form-control" id="descripcion3" name="descripcion3">
-							<!--<textarea class="textarea form-control" id="descripcion3" name="descripcion3" rows="4" ></textarea>-->
-					<!--29/08	</div>
-
-						<div class="col-lg-12">
-							<hr>
-							<input type="hidden" name="agregar_articulo" value="1">
-							<input class="btn btn-success" type="submit" value="Agregar Articulo">
-						</div>
-				  	</div> 29/08-->
 				  </div>
 				</div>
 			</form>
 		</div>
+
 	<?php
 	}
 	 ?>
-	<div class="col-lg-4" style="padding:0px;">
-		<form action="" method="POST">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-				    <h5 class="panel-title fuente">Listado Articulos</h5>
-				</div>
-				<div class="panel-body">
-					<table class="table table-condensed table-hover fuente">
-						<thead>
-							<tr>
-								<th class="text-center">Id</th>
-								<th class="text-center">Titulo</th>
-								<th class="text-center">Tags</th>
-							</tr>
-						</thead>
-						<tbody>
-						<?php 
-						$query = "SELECT * FROM articulos";
-						$row_articulo = mysql_query($query,$cepco) or die(mysql_error());
-
-						while($articulo = mysql_fetch_assoc($row_articulo)){
-						?>
-							<tr <?php if($articulo['idarticulo'] == isset($_GET['detalle'])){ echo "class='info'";} ?>>
-								<td class="fuente">
-									<?php 
-									echo $articulo['idarticulo']; 
-									?>
-									<input type="hidden" name="idarticulo" value="<?php echo $articulo['idarticulo']; ?>">
-								</td>
-								<td class="fuente"><?php echo $articulo['titulo']; ?></td>
-								<td class="fuente">
-								<?php 
-								$consultar_tags = "SELECT articulo_tag.*, tags.nombre FROM articulo_tag INNER JOIN tags ON articulo_tag.idtag = tags.idtag WHERE idarticulo = $articulo[idarticulo]";
-								$row_tag = mysql_query($consultar_tags,$cepco) or die(mysql_error());
-								while($tags = mysql_fetch_assoc($row_tag)){
-									echo "<a  style='margin:1px;' href='#'><span class='label label-success'>".$tags['nombre']."</span></a>";
-								}
-								?>
-								</td>	
-								<td class="fuente">
-									<!-- EDITAR ARTICULO -->
-									<a class="btn btn-sm btn-warning" data-toggle="tooltip" title="Visualizar | Editar" href="?menu=articulo&add_articulo&detalle=<?php echo $articulo['idarticulo']; ?>"><span aria-hidden="true" class="glyphicon glyphicon-pencil"></span></a>
-									<!-- ELIMINAR NOTA -->
-
-									<button class="btn btn-sm btn-danger" data-toggle="tooltip" title="Eliminar Articulo" type="submit" onclick="return confirm('¿Está seguro ?, los datos se eliminaran permanentemente');" name="eliminar_articulo" value="1"><span aria-hidden="true" class="glyphicon glyphicon-trash"></span></button>
-									<!--<a class="btn btn-sm btn-danger" href=""><span aria-hidden="true" class="glyphicon glyphicon-trash"></span></a>-->
-									<input type="hidden" name="img_articulo" value="<?php echo $articulo['img']; ?>">
-								</td>
-							</tr>
-						<?php
-						}
-						 ?>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</form>
-	</div>
 </div>
 <script>
 var contador=0;

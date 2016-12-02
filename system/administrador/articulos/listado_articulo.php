@@ -60,6 +60,8 @@ if (!function_exists("GetSQLValueString")) {
 			<th class="text-left">Descripción</th>
 			<th class="text-left">Imagen</th>
 			<th class="text-left">Tag(s)</th>
+			<th class="text-left">Galeria</th>
+			<th class="text-left">Archivos</th>
 			<th class="text-left">Autor</th>
 			<th class="text-center"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></th>
 		</tr>
@@ -77,7 +79,7 @@ if (!function_exists("GetSQLValueString")) {
 						<?php echo $articulo['idarticulo']; ?>
 					</td>
 					<td><?php echo $articulo['titulo']; ?></td>
-					<td><?php echo substr($articulo['contenido'], 0,200); ?></td>
+					<td ><?php echo substr($articulo['contenido'], 0,200); ?></td>
 					<td><img style="width:50px;" src="<?php echo $articulo['img'] ?>" class="img-thumbnail" alt=""></td>
 					<td>
 					<?php 
@@ -88,7 +90,14 @@ if (!function_exists("GetSQLValueString")) {
 					}
 					 ?>
 					</td>
+					<td class="text-center">
+						<button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></button>
+					</td>
+					<td class="text-center">
+						<button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button>
+					</td>
 					<td><?php echo $articulo['username']; ?></td>
+
 					<td>
 						<!-- EDITAR ARTICULO -->
 						<!-- ELIMINAR NOTA -->
