@@ -79,7 +79,7 @@ if (!function_exists("GetSQLValueString")) {
 						<?php echo $articulo['idarticulo']; ?>
 					</td>
 					<td><?php echo $articulo['titulo']; ?></td>
-					<td ><?php echo substr($articulo['contenido'], 0,200)." [...]"; ?></td>
+					<td ><?php echo substr(strip_tags($articulo['contenido']), 0,200)." [...]"; ?></td>
 					<td><img style="width:50px;" src="<?php echo $articulo['img'] ?>" class="img-thumbnail" alt=""></td>
 					<td>
 					<?php 

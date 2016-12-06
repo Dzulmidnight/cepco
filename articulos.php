@@ -1,4 +1,10 @@
-<?php include("tracert/brain.php");?>
+<?php 
+  require_once("Connections/cepco_2.php");
+  mysql_select_db($database_cepco, $cepco);
+  $idarticulo = $_GET['articulo'];
+  $row_articulo = mysql_query("SELECT * FROM articulos WHERE idarticulo = $idarticulo", $cepco) or die(mysql_error());
+  $articulo = mysql_fetch_assoc($row_articulo);
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +41,6 @@
   
   
   
-    <?php include("section0.php");?>
     <div class="main-nav">
       <div class="container">
         <div class="navbar-header">
@@ -51,37 +56,17 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">                 
-            <li class="scroll active"><a href="#home">Inicio</a></li>
+            <li class="scroll"><a href="#home">Inicio</a></li>
             <li class="scroll"><a href="#about-us">Historia</a></li>                     
             <li class="scroll"><a href="#portfolio">En movimiento</a></li>
             <li class="scroll"><a href="#organic">Organico y Ambiental</a></li>
             <li class="scroll"><a href="#team">Trazabilidad!</a></li>
-            <li class="scroll"><a href="#proyectos">Proyectos</a></li>
+            <li class="scroll active"><a href="#proyectos">Proyectos</a></li>
             <!--<li class="scroll"><a href="#">Vvienda</a></li>-->
             <li class="scroll"><a href="#contact">Contact</a></li> 
             <li class="scroll"><a href="login.php">Mi Cuenta</a></li>       
           </ul>
         </div>
-
-
-
-<!--        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-right">                 
-            <li class="scroll active"><a href="#home">Inicio</a></li>
-            <li class="scroll"><a href="#services">Servicios</a></li> 
-            <li class="scroll"><a href="#about-us">Historia</a></li>           
-            <li class="scroll"><a href="#">Empresa</a></li>
-            <li class="scroll"><a href="#portfolio">Organico y Ambiental</a></li>
-            <li class="scroll"><a href="#team">Servicios Ambientales</a></li>
-            <li class="scroll"><a href="#">Vivienda</a></li>
-            <li class="scroll"><a href="#blog">Blog</a></li>
-
-            <li class="scroll"><a href="#contact">Contact</a></li>       
-          </ul>
-        </div>
--->
-
-
 
       </div>
     </div><!--/#main-nav-->
@@ -90,17 +75,94 @@
   
 <?php //include("servicios.php")?>
 
-<?php include("proyectos.php"); ?>
+<section id="about-us" class="fuente parallax">
+    <div class="container" id="proyectos">
+      <div class="row">
+        <div class="col-lg-8">
 
-<?php include("historia.php"); ?>
-  
-<?php include("datos.php"); ?>
-  
-<?php include("empresa.php"); ?>
+        	<div class="col-lg-12">
+        		<h5 class="" style="color:#7f8c8d">Tags</h5>
+        		<?php 
+        			$row_tags = mysql_query("SELECT articulo_tag.*, tags.nombre FROM articulo_tag INNER JOIN tags ON articulo_tag.idtag = tags.idtag WHERE idarticulo = $articulo[idarticulo]", $cepco) or die(mysql_error());
+        			while($tags = mysql_fetch_assoc($row_tags)){
+        			?>
+						<a style='margin:1px;font-size:12px;' href='#'><span class='glyphicon glyphicon-tags'></span> <?php echo $tags['nombre']; ?></a>
+        			<?php
+        			}
+        		 ?>
+        	</div>
 
-<?php include("tracert_view.php"); ?>
+          <div style="text-align:justify" class="lead wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <h2 style="color: #2c3e50;"><?php echo $articulo['titulo']; ?></h2>
 
+            <?php 
+            echo $articulo['contenido'];
+            echo "<p>Fuente: ".$articulo['fuente']."</p>";
+             ?>
+          </div>
+        </div>
+        <div class="col-lg-4">
+        	<div class="col-lg-12 hidden-xs hidden-sm">
+	        	<h2 class="text-center" style="color:#7f8c8d">Galería</h2>
+				<?php
+				  $row_galeria = mysql_query("SELECT * FROM imagenes WHERE idarticulo = $articulo[idarticulo]", $cepco) or die(mysql_error());
 
+				  while($galeria = mysql_fetch_assoc($row_galeria)){
+				  ?>
+					  <div align="center" class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="550ms">
+					    <div class="img-thumbnail">
+					      <a href="#" target="_new"><img style="font-size:10px;" src="system/img/<?php echo $galeria['ruta']; ?>" alt="<?php echo $galeria['descripcion_img']; ?>" width="90px" height="90px"></a>
+					      
+					    </div>
+					  </div>
+				  <?php
+				  }
+				?>
+				  <div align="center" class="col-lg-12 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="650ms">
+				    <button class="btn btn-success">Ver Más</button>
+				  </div>
+				  		
+        	</div>
+        	<div class="col-lg-12" style="margin-top:4em;">
+	        	<h2 class="text-center" style="color:#7f8c8d">Biblioteca</h2>
+				<?php
+				  $row_biblioteca = mysql_query("SELECT * FROM archivos WHERE idarticulo = $articulo[idarticulo]", $cepco) or die(mysql_error());
+
+				  while($biblioteca = mysql_fetch_assoc($row_biblioteca)){
+				  ?>
+					<a href="system/img/<?php echo $biblioteca['ruta']; ?>" target="_new"><p style="font-size:13px;"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> <?php echo $biblioteca['titulo']; ?></p></a>
+				  <?php
+				  }
+				?>
+				  <div align="center" class="col-lg-12 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="650ms">
+				    <button class="btn btn-success">Ver Más</button>
+				  </div>
+				  
+        	</div> 
+        </div>
+        <div class="col-lg-12">
+        	<hr>
+        	<h2 style="color: #2c3e50;" class="text-center">Otros Articulos</h2>
+        	<?php 
+        	$row_articulos = mysql_query("SELECT * FROM articulos WHERE idarticulo != $idarticulo ORDER BY articulos.fecha_registro LIMIT 4", $cepco) or die(mysql_error());
+        	while($articulos = mysql_fetch_assoc($row_articulos)){
+        	?>
+			  <div align="center" class="col-lg-3 col-md-3 col-sm-6  wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="550ms">
+			    <div class="service-icon">
+			      <a href="system/img/<?php echo $articulos['img']; ?>" target="_new"><img style="font-size:10px;" src="system/img/<?php echo $articulos['img']; ?>" alt="<?php echo $articulos['descripcion_img']; ?>" width="90px" height="90px"></a>
+			    </div>
+			    <div class="service-info text-justify">
+			      <h3 style="color: #2c3e50;"><?php echo $articulos['titulo']; ?></h3>
+			      <p><?php echo substr(strip_tags($articulos['contenido']), 0,200)." [... <a href='articulos.php?articulo=$articulos[idarticulo]'>Conoce más</a>]"; ?></p>
+			    </div>
+			  </div>
+        	<?php
+        	}
+        	 ?>
+        </div>
+      </div>
+    </div>
+  </section>
 
   
   <footer id="footer">
@@ -138,7 +200,6 @@
 
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
   <script type="text/javascript" src="js/jquery.inview.min.js"></script>
   <script type="text/javascript" src="js/wow.min.js"></script>
   <script type="text/javascript" src="js/mousescroll.js"></script>

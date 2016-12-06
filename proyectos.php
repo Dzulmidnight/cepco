@@ -1,9 +1,9 @@
-<section id="about-us" class="parallax">
+<section id="about-us" class="fuente parallax">
     <div class="container" id="proyectos">
       <div class="row">
         <div class="col-lg-6">
           <div style="text-align:justify" class="lead wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <h2>PROYECTOS</h2>
+            <h2 style="color: #2c3e50;">PROYECTOS</h2>
             <p>
               La Coordinadora Estatal de Productores de Café de Oaxaca (CEPCO) se creó en 1989.
             </p>
