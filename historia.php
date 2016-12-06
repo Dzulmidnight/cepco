@@ -33,12 +33,7 @@
           </div>
         </div>
         <div class="col-lg-6">
-        
-        
-        <?php include("servicios.php")?>
-        
-        
-        
+        <?php include("servicios.php"); ?>
         </div>
       </div>
     </div>

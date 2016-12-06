@@ -1,12 +1,10 @@
 <?php 
   require_once("Connections/cepco_2.php");
   mysql_select_db($database_cepco, $cepco);
-  $idarticulo = $_GET['articulo'];
-  $row_articulo = mysql_query("SELECT * FROM articulos WHERE idarticulo = $idarticulo", $cepco) or die(mysql_error());
-  $articulo = mysql_fetch_assoc($row_articulo);
+  $row_articulo = mysql_query("SELECT * FROM articulos ORDER BY articulos.fecha_registro DESC", $cepco) or die(mysql_error());
  ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,94 +70,28 @@
     </div><!--/#main-nav-->
   </header><!--/#home-->
   
-  
 <?php //include("servicios.php")?>
 
 <section id="about-us" class="fuente parallax">
     <div class="container" id="proyectos">
       <div class="row">
-        <div class="col-lg-8">
-
-        	<div class="col-lg-12">
-        		<h5 class="" style="color:#7f8c8d">Tags</h5>
-        		<?php 
-        			$row_tags = mysql_query("SELECT articulo_tag.*, tags.nombre FROM articulo_tag INNER JOIN tags ON articulo_tag.idtag = tags.idtag WHERE idarticulo = $articulo[idarticulo]", $cepco) or die(mysql_error());
-        			while($tags = mysql_fetch_assoc($row_tags)){
-        			?>
-						<a style='margin:1px;font-size:12px;' href='#'><span class='glyphicon glyphicon-tags'></span> <?php echo $tags['nombre']; ?></a>
-        			<?php
-        			}
-        		 ?>
-        	</div>
-
-          <div style="text-align:justify" class="lead wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <h2 style="color: #2c3e50;"><?php echo $articulo['titulo']; ?></h2>
-
-            <?php 
-            echo $articulo['contenido'];
-            echo "<p>Fuente: ".$articulo['fuente']."</p>";
-             ?>
+        <h2 class="text-center" style="color:#2c3e50;">Nuestros Proyectos</h2>
+        <?php 
+        while($articulos = mysql_fetch_assoc($row_articulo)){
+        ?>
+          <div align="center" class="col-lg-4 col-md-4 col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="550ms">
+            <div class="service-icon">
+              <a href="system/img/<?php echo $articulos['img']; ?>" target="_new"><img style="font-size:10px;" src="system/img/<?php echo $articulos['img']; ?>" alt="<?php echo $articulos['descripcion_img']; ?>" width="90px" height="90px"></a>
+              
+            </div>
+            <div class="service-info text-justify col-md-12">
+              <h3 style="color: #2c3e50;"><?php echo $articulos['titulo']; ?></h3>
+              <p><?php echo substr(strip_tags($articulos['contenido']), 0,200)." [... <a href='informacion_articulo.php?articulo=$articulos[idarticulo]'>Conoce más</a>]"; ?></p>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-4">
-        	<div class="col-lg-12 hidden-xs hidden-sm">
-	        	<h2 class="text-center" style="color:#7f8c8d">Galería</h2>
-				<?php
-				  $row_galeria = mysql_query("SELECT * FROM imagenes WHERE idarticulo = $articulo[idarticulo]", $cepco) or die(mysql_error());
-
-				  while($galeria = mysql_fetch_assoc($row_galeria)){
-				  ?>
-					  <div align="center" class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="550ms">
-					    <div class="img-thumbnail">
-					      <a href="#" target="_new"><img style="font-size:10px;" src="system/img/<?php echo $galeria['ruta']; ?>" alt="<?php echo $galeria['descripcion_img']; ?>" width="90px" height="90px"></a>
-					      
-					    </div>
-					  </div>
-				  <?php
-				  }
-				?>
-				  <div align="center" class="col-lg-12 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="650ms">
-				    <button class="btn btn-success">Ver Más</button>
-				  </div>
-				  		
-        	</div>
-        	<div class="col-lg-12" style="margin-top:4em;">
-	        	<h2 class="text-center" style="color:#7f8c8d">Biblioteca</h2>
-				<?php
-				  $row_biblioteca = mysql_query("SELECT * FROM archivos WHERE idarticulo = $articulo[idarticulo]", $cepco) or die(mysql_error());
-
-				  while($biblioteca = mysql_fetch_assoc($row_biblioteca)){
-				  ?>
-					<a href="system/img/<?php echo $biblioteca['ruta']; ?>" target="_new"><p style="font-size:13px;"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> <?php echo $biblioteca['titulo']; ?></p></a>
-				  <?php
-				  }
-				?>
-				  <div align="center" class="col-lg-12 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="650ms">
-				    <button class="btn btn-success">Ver Más</button>
-				  </div>
-				  
-        	</div> 
-        </div>
-        <div class="col-lg-12">
-        	<hr>
-        	<h2 style="color: #2c3e50;" class="text-center">Otros Articulos</h2>
-        	<?php 
-        	$row_articulos = mysql_query("SELECT * FROM articulos WHERE idarticulo != $idarticulo ORDER BY articulos.fecha_registro LIMIT 4", $cepco) or die(mysql_error());
-        	while($articulos = mysql_fetch_assoc($row_articulos)){
-        	?>
-			  <div align="center" class="col-lg-3 col-md-3 col-sm-6  wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="550ms">
-			    <div class="service-icon">
-			      <a href="system/img/<?php echo $articulos['img']; ?>" target="_new"><img style="font-size:10px;" src="system/img/<?php echo $articulos['img']; ?>" alt="<?php echo $articulos['descripcion_img']; ?>" width="90px" height="90px"></a>
-			    </div>
-			    <div class="service-info text-justify">
-			      <h3 style="color: #2c3e50;"><?php echo $articulos['titulo']; ?></h3>
-			      <p><?php echo substr(strip_tags($articulos['contenido']), 0,200)." [... <a href='articulos.php?articulo=$articulos[idarticulo]'>Conoce más</a>]"; ?></p>
-			    </div>
-			  </div>
-        	<?php
-        	}
-        	 ?>
-        </div>
+        <?php
+        }
+         ?>
       </div>
     </div>
   </section>

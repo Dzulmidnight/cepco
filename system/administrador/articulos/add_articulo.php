@@ -242,7 +242,7 @@ if (!function_exists("GetSQLValueString")) {
 						</div>
 						<div class="col-md-10">
 							<label for="descripcion_img">Descripción Imagen</label>
-							<input type="text" class="form-control" name="descripcion_img" placeholder="Descripción Imagen" value="<?php echo $articulo['descripcion_img']; ?>">
+							<textarea class="form-control" name="descripcion_img" placeholder="Descripción Imagen"><?php echo $articulo['descripcion_img']; ?></textarea>
 						</div>
 						<div class="col-md-12">
 							<label for="nueva_img">Cambiar Imagen</label>
@@ -251,7 +251,7 @@ if (!function_exists("GetSQLValueString")) {
 
 						<div class="col-md-12">
 							<label for="contenido">Contenido Artículo</label>
-							<textarea class="form-control" name="contenido" id="" rows="10"><?php echo $articulo['contenido']; ?></textarea>
+							<textarea class="textarea form-control" name="contenido" id="" rows="10"><?php echo $articulo['contenido']; ?></textarea>
 						</div>
 						<div class="col-md-12">
 							<label for="fuente">Fuente</label>
