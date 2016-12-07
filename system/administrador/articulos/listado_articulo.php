@@ -47,9 +47,56 @@ if (!function_exists("GetSQLValueString")) {
 
 	}
 	//$query = "SELECT nota.*,  usuario.username FROM nota INNER JOIN usuario ON nota.idusuario = usuario.idusuario";
-	$query = "SELECT articulos.*, usuarios.username FROM articulos INNER JOIN usuarios ON articulos.autor = usuarios.idusuario";
+	$query = "SELECT articulos.*, usuarios.username FROM articulos INNER JOIN usuarios ON articulos.autor = usuarios.idusuario ORDER BY articulos.fecha_registro DESC";
 	$row_articulo = mysql_query($query,$cepco) or die(mysql_error());
 	$total_articulo = mysql_num_rows($row_articulo);
+
+	/* INICIA PAGINACION */
+		//limitamos la consulta
+		$regXPag = 10;
+		$pagina = false; //cuando se ingresa al menu no tiene ningun valor
+
+		//Examinar la pagina a mostrar y el inicio del registro a mostrar
+		if(isset($_GET['p'])){
+			$pagina = $_GET['p'];
+		}
+		if(!$pagina){ //si la pagina es falsa
+			$inicio = 0;
+			$pagina = 1;
+		}else{
+			$inicio = ($pagina - 1) * $regXPag;
+		}
+		//calculamos el total de páginas
+		$total_paginas = ceil($total_articulo / $regXPag);
+
+	$query .= " LIMIT ".$inicio.",".$regXPag;
+
+	$paginacion = "<p style='margin-bottom:-20px;'>";
+		$paginacion .= "Número de resultados: <b>$total_articulo</b>. ";
+		$paginacion .= "Mostrando <b>$regXPag</b> resultados por página. ";
+		$paginacion .= "Página <b>$pagina</b> de <b>$total_paginas</b>. ";
+	$paginacion .= "</p>";
+
+	if($total_paginas > 1){
+		$paginacion .= '<nav aria-label="Page navigation">';
+		  $paginacion .= '<ul class="pagination">';
+		  	$paginacion .= ($pagina != 1)?'<li><a href="?menu=articulo&p='.($pagina-1).'" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>':'';
+
+			for ($i=1; $i <= $total_paginas; $i++) {
+				//si muestro el indice de la pagina actual, no coloco enlace
+				$actual = "<li class='active'><a href='#'>".$pagina."</a></li>";
+				//si el indice no corresponde con la pagina mostrada actualmente, coloco el enlace para ir a esa pagina
+				$enlace = '<li><a href="?menu=articulo&p='.$i.'">'.$i.'</a></li>';
+
+				$paginacion .= ($pagina == $i)?$actual:$enlace;
+			}
+			$paginacion .= ($pagina!=$total_paginas)?"<li><a href='?menu=articulo&p=".($pagina+1)."' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>":"";
+		  $paginacion .= "</ul>";
+		$paginacion .= "</nav>";
+	}
+	$row_articulo = mysql_query($query,$cepco) or die(mysql_error());
+
+	/* TERMINA PAGINACIÓN*/
 ?>
 <h4>Listado Articulos</h4>
 <table class="table table-striped table-bordered" style="font-size:11px;">
@@ -127,22 +174,7 @@ if (!function_exists("GetSQLValueString")) {
 				      	<div class="row">
 				      		<div class="col-md-12">
 						      <?php //nl2br
-
 						      	echo "<div class='col-xs-12'><p class='text-justify'>".$articulo['contenido']."</p></div>";
-
-
-
-						      /*$nota = sprintf("SELECT contenido,contenido_descripcion,descripcion_img  FROM nota WHERE idarticulo = %s",
-						        GetSQLValueString($articulo['idarticulo'],"int"));
-						      $ejecutar = mysql_query($nota,$cepco) or die(mysql_error());
-						      $titulo_nota = mysql_fetch_assoc($ejecutar);
-
-						      $query_segmento = sprintf("SELECT * FROM nota_segmento WHERE idarticulo  = %s",
-						      GetSQLValueString($articulo['idarticulo'],"int"));
-
-						      $ejecutar = mysql_query($query_segmento,$cepco) or die(mysql_error());*/
-
-
 							?>	
 				      		</div>
 				      	</div>
@@ -155,7 +187,30 @@ if (!function_exists("GetSQLValueString")) {
 				</div>
 			<?php
 			}
+
 		}
 		?>
 	</tbody>
 </table>
+<?php 
+	echo $paginacion;
+ ?>
+		<!--<nav aria-label="Page navigation">
+		  <ul class="pagination">
+		    <li>
+		      <a href="#" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+		    <li><a href="#">1</a></li>
+		    <li><a href="#">2</a></li>
+		    <li><a href="#">3</a></li>
+		    <li><a href="#">4</a></li>
+		    <li><a href="#">5</a></li>
+		    <li>
+		      <a href="#" aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		  </ul>
+		</nav>-->

@@ -1,7 +1,12 @@
 <?php 
   require_once("Connections/cepco_2.php");
   mysql_select_db($database_cepco, $cepco);
-  $row_articulo = mysql_query("SELECT * FROM articulos ORDER BY articulos.fecha_registro DESC", $cepco) or die(mysql_error());
+  if(isset($_GET['tag']) && !empty($_GET['tag'])){
+    $tag = $_GET['tag'];
+    $row_articulo = mysql_query("SELECT articulos.*, articulo_tag.idtag FROM articulos INNER JOIN articulo_tag ON articulos.idarticulo = articulo_tag.idarticulo WHERE articulo_tag.idtag = $tag  ORDER BY articulos.fecha_registro DESC", $cepco) or die(mysql_error());
+  }else{
+    $row_articulo = mysql_query("SELECT * FROM articulos ORDER BY articulos.fecha_registro DESC", $cepco) or die(mysql_error());
+  }
  ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -54,14 +59,14 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">                 
-            <li class="scroll"><a href="#home">Inicio</a></li>
-            <li class="scroll"><a href="#about-us">Historia</a></li>                     
-            <li class="scroll"><a href="#portfolio">En movimiento</a></li>
-            <li class="scroll"><a href="#organic">Organico y Ambiental</a></li>
-            <li class="scroll"><a href="#team">Trazabilidad!</a></li>
+            <li class="scroll"><a href="index.php">Inicio</a></li>
+            <li class="scroll"><a href="index.php#about-us">Historia</a></li>                     
+            <li class="scroll"><a href="index.php#portfolio">En movimiento</a></li>
+            <li class="scroll"><a href="index.php#organic">Organico y Ambiental</a></li>
+            <li class="scroll"><a href="index.php#team">Trazabilidad!</a></li>
             <li class="scroll active"><a href="#proyectos">Proyectos</a></li>
             <!--<li class="scroll"><a href="#">Vvienda</a></li>-->
-            <li class="scroll"><a href="#contact">Contact</a></li> 
+            <li class="scroll"><a href="index.php#contact">Contact</a></li> 
             <li class="scroll"><a href="login.php">Mi Cuenta</a></li>       
           </ul>
         </div>
@@ -72,7 +77,7 @@
   
 <?php //include("servicios.php")?>
 
-<section id="about-us" class="fuente parallax">
+<section id="about-us2" class="fuente parallax">
     <div class="container" id="proyectos">
       <div class="row">
         <h2 class="text-center" style="color:#2c3e50;">Nuestros Proyectos</h2>
@@ -90,6 +95,9 @@
             </div>
           </div>
         <?php
+        }
+        if(isset($_GET['tag']) && !empty($_GET['tag'])){
+          echo '<div class="col-lg-12 text-center"><a href="articulos.php" class="btn btn-success">Mostrar todos</a></div>';
         }
          ?>
       </div>

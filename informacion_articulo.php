@@ -1,5 +1,4 @@
 <?php 
-
   if(isset($_GET['articulo']) && !empty($_GET['articulo'])){
   
   require_once("Connections/cepco_2.php");
@@ -56,14 +55,14 @@
             </div>
             <div class="collapse navbar-collapse">
               <ul class="nav navbar-nav navbar-right">                 
-                <li class="scroll"><a href="#home">Inicio</a></li>
-                <li class="scroll"><a href="#about-us">Historia</a></li>                     
-                <li class="scroll"><a href="#portfolio">En movimiento</a></li>
-                <li class="scroll"><a href="#organic">Organico y Ambiental</a></li>
-                <li class="scroll"><a href="#team">Trazabilidad!</a></li>
+                <li class="scroll"><a href="index.php">Inicio</a></li>
+                <li class="scroll"><a href="index.php#about-us">Historia</a></li>                     
+                <li class="scroll"><a href="index.php#portfolio">En movimiento</a></li>
+                <li class="scroll"><a href="index.php#organic">Organico y Ambiental</a></li>
+                <li class="scroll"><a href="index.php#team">Trazabilidad!</a></li>
                 <li class="scroll active"><a href="#proyectos">Proyectos</a></li>
                 <!--<li class="scroll"><a href="#">Vvienda</a></li>-->
-                <li class="scroll"><a href="#contact">Contact</a></li> 
+                <li class="scroll"><a href="index.php#contact">Contact</a></li> 
                 <li class="scroll"><a href="login.php">Mi Cuenta</a></li>       
               </ul>
             </div>
@@ -72,24 +71,22 @@
       </header><!--/#home-->
     
 
-    <section id="about-us" class="fuente parallax">
+    <section id="about-us2" class="fuente parallax">
         <div class="container" id="proyectos">
           <div class="row">
             <div class="col-lg-8">
+              <div style="text-align:justify" class="lead wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
 
-              <div class="col-lg-12">
                 <h5 class="" style="color:#7f8c8d">Tags</h5>
                 <?php 
                   $row_tags = mysql_query("SELECT articulo_tag.*, tags.nombre FROM articulo_tag INNER JOIN tags ON articulo_tag.idtag = tags.idtag WHERE idarticulo = $articulo[idarticulo]", $cepco) or die(mysql_error());
                   while($tags = mysql_fetch_assoc($row_tags)){
                   ?>
-                <a style='margin:1px;font-size:12px;' href='#'><span class='glyphicon glyphicon-tags'></span> <?php echo $tags['nombre']; ?></a>
+                  <a style='margin:1px;font-size:12px;' href='articulos.php?tag=<?php echo $tags['idtag']; ?>'><span class='glyphicon glyphicon-tags'></span> <?php echo $tags['nombre']; ?></a>
                   <?php
                   }
                  ?>
-              </div>
 
-              <div style="text-align:justify" class="lead wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
                 <h2 style="color: #2c3e50;"><?php echo $articulo['titulo']; ?></h2>
 
                 <?php 
@@ -157,6 +154,9 @@
               }
                ?>
             </div>
+
+            <div class="col-lg-12 text-center"><a href="articulos.php" class="btn btn-success" style="width:300px;">Ver Más</a></div>
+
           </div>
         </div>
       </section>
