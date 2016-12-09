@@ -97,7 +97,7 @@
           <ul class="visible-xs nav navbar-nav navbar-right">
             <li ><a href="index.php">Inicio</span></a></li>
             <li ><a href="?menu=articulo">Articulos</a></li>
-            <li ><a href="?menu=organizacion&listado_organizacion">Organizaciones</a></li>
+            <!--<li ><a href="?menu=organizacion&listado_organizacion">Organizaciones</a></li>-->
             <li><a href="../../connections/salir.php">Cerrar Sesión</a></li>
           </ul>
           <!--<form class="navbar-form navbar-right">
@@ -117,7 +117,7 @@
               <a href="index.php">Inicio <span style="font-size:16px;" class="pull-right glyphicon glyphicon-home" aria-hidde="true"></span></a>
             </li>
             <li class="bordes"><a href="?menu=articulo">Articulos <span class="pull-right glyphicon glyphicon-book" aria-hidden="true"></span></a></li>
-            <li class="bordes"><a href="?menu=organizacion&listado_organizacion">Organizaciones</a></li>
+            <!--<li class="bordes"><a href="?menu=organizacion&listado_organizacion">Organizaciones</a></li>-->
             <li class="bordes"><a href="../../connections/salir.php">Cerrar Sesión <span style="font-size:16px;" class="pull-right glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
           </ul>
 
