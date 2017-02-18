@@ -120,6 +120,11 @@ if (!function_exists("GetSQLValueString")) {
 		}else{
 			while($articulo = mysql_fetch_assoc($row_articulo)){
 				$fecha = date('d/m/Y',$articulo['fecha_registro']);
+				$num_img = mysql_query("SELECT idimagen FROM imagenes WHERE idarticulo = ".$articulo['idarticulo']."", $cepco) or die(mysql_error());
+				$total_img = mysql_num_rows($num_img);
+
+				$num_archivos = mysql_query("SELECT idarchivo FROM archivos WHERE idarticulo = ".$articulo['idarticulo']."", $cepco) or die(mysql_error());
+				$total_archivos = mysql_num_rows($num_archivos);
 			?>
 				<tr>
 					<td>
@@ -138,10 +143,10 @@ if (!function_exists("GetSQLValueString")) {
 					 ?>
 					</td>
 					<td class="text-center">
-						<a class="btn btn-sm btn-default" href="?menu=articulo&listado&galeria=<?php echo $articulo['idarticulo']; ?>"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>
+						<a class="btn btn-sm btn-default" href="?menu=articulo&listado&galeria=<?php echo $articulo['idarticulo']; ?>" data-toggle="tooltip" title="Agregar Galeria"><?php if($total_img != 0){ echo $total_img;}else{ echo "0";} ?> <span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>
 					</td>
 					<td class="text-center">
-						<a class="btn btn-sm btn-default" href="?menu=articulo&listado&archivos=<?php echo $articulo['idarticulo']; ?>"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></a>
+						<a class="btn btn-sm btn-default" href="?menu=articulo&listado&archivos=<?php echo $articulo['idarticulo']; ?>" data-toggle="tooltip" title="Agregar Archivos"><?php if($total_archivos != 0){ echo $total_archivos;}else{ echo "0"; } ?> <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></a>
 					</td>
 					<td><?php echo $articulo['username']; ?></td>
 
@@ -195,22 +200,3 @@ if (!function_exists("GetSQLValueString")) {
 <?php 
 	echo $paginacion;
  ?>
-		<!--<nav aria-label="Page navigation">
-		  <ul class="pagination">
-		    <li>
-		      <a href="#" aria-label="Previous">
-		        <span aria-hidden="true">&laquo;</span>
-		      </a>
-		    </li>
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
-		    <li>
-		      <a href="#" aria-label="Next">
-		        <span aria-hidden="true">&raquo;</span>
-		      </a>
-		    </li>
-		  </ul>
-		</nav>-->
