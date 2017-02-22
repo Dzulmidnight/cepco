@@ -1,4 +1,4 @@
-<?php include("tracert/brain.php");?>
+   <?php include("tracert/brain.php");?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -35,7 +35,7 @@
   
   
   
-    <?php include("section0.php");?>
+    <?php  include("section0.php");?>
     <div class="main-nav">
       <div class="container">
         <div class="navbar-header">

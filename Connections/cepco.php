@@ -3,9 +3,9 @@
 # Type="MYSQL"
 # HTTP="true"
 $hostname_cepco = "localhost";
-$database_cepco = "inforgan_SICD15";
-$username_cepco = "root";
-$password_cepco = "";
+$database_cepco = "cepcoorg_SICD15";
+$username_cepco = "cepcoorg_SICD15";
+$password_cepco = "m!xwOP)vE]xT";
 $cepco = mysql_pconnect($hostname_cepco, $username_cepco, $password_cepco) or trigger_error(mysql_error(),E_USER_ERROR); 
 /*
 $hostname_cepco = "localhost";

@@ -1,3 +1,42 @@
+ <?php
+ 
+ $limite=14;
+
+
+$hostname_cepco = "localhost";
+$database_cepco = "cepcoorg_SICD15";
+$username_cepco = "cepcoorg_SICD15";
+$password_cepco = "m!xwOP)vE]xT";
+$cepco = mysql_pconnect($hostname_cepco, $username_cepco, $password_cepco) or trigger_error(mysql_error(),E_USER_ERROR); 
+
+mysql_select_db($database_cepco, $cepco);
+
+$query_fotografia = "SELECT * FROM fotografia where descripcion='disponible' order by RAND() limit ".$limite;
+$fotografia = mysql_query($query_fotografia, $cepco) or die(mysql_error());
+//$row_fotografia = mysql_fetch_assoc($fotografia);
+$totalRows_fotografia = mysql_num_rows($fotografia);
+
+
+
+$query = "SELECT * FROM organizacion ";
+$organizacion = mysql_query($query, $cepco) or die(mysql_error());
+//$row_organizacion = mysql_fetch_assoc($organizacion);
+
+
+if(isset($_POST['idorganizacion'])){
+$query = "SELECT * FROM localidad where idlocalidad in(select idlocalidad from inspeccion_detalle where idorganizacion='".$_POST['idorganizacion']."')";
+$localidad = mysql_query($query, $cepco) or die(mysql_error());
+//$row_localidad = mysql_fetch_assoc($localidad);
+}else{
+$query = "SELECT * FROM localidad ";
+$localidad = mysql_query($query, $cepco) or die(mysql_error());
+//$row_localidad = mysql_fetch_assoc($localidad);
+}
+
+
+ 
+ ?>
+ 
  <section id="team">
     <div class="container">
       <div class="row">
@@ -14,7 +53,7 @@
 
 <form method="post" action="#team" class="form">
 <label for="idorganizacion">Selecciona una Organización:</label>
-<select disabled="disabled" onchange="this.form.submit()" class="form-control" name="idorganizacion">
+<select  onchange="this.form.submit()" class="form-control" name="idorganizacion">
 <?php while($row_organizacion = mysql_fetch_assoc($organizacion)
 ){?>
 <option <?php if(isset($_POST['idorganizacion'])){if($_POST['idorganizacion']==$row_organizacion['idorganizacion']){?> selected="selected" <?php }}?> value="<?php echo $row_organizacion['idorganizacion'];?>"><?php echo $row_organizacion['organizacion'];?></option>
@@ -23,7 +62,7 @@
 </form>
 <form method="post" action="#team" class="form">
 <label for="idlocalidad"><?php if(isset($_POST['idorganizacion'])){?>Comunidades relacionadas a la organización:<?php }else{?>Selecciona una Comunidad:<?php }?></label>
-<select disabled="disabled" onchange="this.form.submit()" class="form-control" name="idlocalidad">
+<select  onchange="this.form.submit()" class="form-control" name="idlocalidad">
 <?php while($row_localidad = mysql_fetch_assoc($localidad)
 ){?>
 <option <?php if(isset($_POST['idlocalidad'])){if($_POST['idlocalidad']==$row_localidad['idlocalidad']){?> selected="selected" <?php }}?> value="<?php echo $row_localidad['idlocalidad']?>"><?php echo $row_localidad['localidad'];?></option>
@@ -36,7 +75,7 @@
 <form method="post" action="#team" class="form">
 <label for="productor">Productor (Nombre o Clave):</label>
 
-<input name="productor" type="text" placeholder="Escribe aquí" readonly="readonly" />
+<input name="productor" type="text" placeholder="Escribe aquí" />
 
 <?php if(isset($_POST['idorganizacion'])){?>
 <input type="hidden" name="idorganizacion" value="<?php echo $_POST['idorganizacion'];?>" />
@@ -57,7 +96,7 @@
         
         <?php
         
-				$limite=7;
+				
 				$cont=0;
 				
 				while($row_fotografia = mysql_fetch_assoc($fotografia)){
@@ -94,32 +133,80 @@
 				
 				?>
         
-          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 ">
-            <div class="team-member wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
+        
+        
+        <?php
+        
+				
+				list($ancho, $alto, $tipo, $atributos) = getimagesize("tracert/foto/".$row_fotografia['url']."");
+				
+				if($ancho>$alto){?>
+        
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="team-member wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
+           <table border="0" cellpadding="0" cellspacing="0" width="100%" height="200">
+           <tr><td width="50%">
               <div class="member-image">
-                <img class="img-responsive" src="tracert/foto/<?php echo $row_fotografia['url'];?>" alt="">
+                <img class="img-rounded" width="100%" src="tracert/foto/<?php echo $row_fotografia['url'];?>" alt="">
               </div>
+              </td><td>
               <div class="member-info">
-                <h4><?php echo substr($row_productor['productor'],0,15);?></h4>
-                <h4>Productor ORGÁNICO</h4>
-                <small><?php echo $row_localidaddet['localidad']."<br>".$row_organizaciondet['organizacion'];?></small>
+                <h5><?php echo $row_productor['productor'];?></h5>
+                <p><?php echo $row_localidaddet['localidad'].", ".$row_organizaciondet['organizacion'];?></p>
               </div>
-             
+              </td>
+              </tr>
+              </table>
             </div>
           </div>
           
-          <?php }}}}?>
+				<?php }else{?>
+        
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="team-member wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
+           <table border="0" cellpadding="0" cellspacing="0" width="100%" height="200">
+           <tr><td width="50%">
+              <div class="member-image">
+                <img class="img-rounded" height="190" src="tracert/foto/<?php echo $row_fotografia['url'];?>" alt="">
+              </div>
+              </td><td>
+              <div class="member-info">
+                <h5><?php echo $row_productor['productor'];?></h5>
+                <p><?php echo $row_localidaddet['localidad'].", ".$row_organizaciondet['organizacion'];?></p>
+              </div>
+              </td>
+              </tr>
+              </table>
+            </div>
+          </div>
           
-          <div class="col-sm-3">
-            <div class="team-member wow flipInY" data-wow-duration="1000ms" data-wow-delay="800ms">
+				<?php }
+				
+				?>
+        
+          
+            
+          
+          <?php }}}}?>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="team-member wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
+           <table border="0" cellpadding="0" cellspacing="0" width="100%" height="190">
+           <tr><td width="50%">
               <div class="member-image">
                 <img class="img-responsive" src="tracert/config/logo_tracert.jpg" alt="">
               </div>
+              </td><td>
               <div class="member-info">
                 <h3>tra.cert</h3>
                 <h4>inforganic Technologies</h4>
                 <p align="justify">Sistema digital de trazabilidad de producto.<br />Información recopilada en campo por tecnicos comunitarios capacitados en tecnologías de última generación, datos e imagenes disponibles al consumidor y público interesado vía internet.</p>
               </div>
+              </td>
+              </tr>
+              </table>
+            </div>
+          </div>
+          
               
               <?php /*
               <div class="social-icons">

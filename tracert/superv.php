@@ -39,15 +39,22 @@ $fotografia = mysql_query($query_fotografia, $cepco) or die(mysql_error());
 //$row_fotografia = mysql_fetch_assoc($fotografia);
 $totalRows_fotografia = mysql_num_rows($fotografia);
 echo "before while, tot: ".$totalRows_fotografia;
+$cont1=0;
+$cont2=0;
 while($row_fotografia = mysql_fetch_assoc($fotografia)){
 
 	if(file_exists("foto/".$row_fotografia['url'])){
-		
+		$cont1++;
 		$query="update fotografia set descripcion='disponible' where idfotografia='".$row_fotografia['idfotografia']."'";
 		$ejecutar = mysql_query($query, $cepco) or die(mysql_error());
-		echo "<br>".$query."<br>";
+	}else{
+		$cont2++;
+		$query="update fotografia set descripcion=NULL where idfotografia='".$row_fotografia['idfotografia']."'";
+		$ejecutar = mysql_query($query, $cepco) or die(mysql_error());
 	}
 
 }
+echo "<br>disponibles: ".$cont1."<br>";
+echo "no disponibles: ".$cont2."<br>";
 
 ?>
